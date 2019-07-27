@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireMonsterController : MonoBehaviour
+public class BossController : MonoBehaviour
 {
-    public float speed = 4.0f;
-    public int maxHealth = 4;
+    public float speed = 5.0f;
+    public int maxHealth = 10;
     public int health { get { return currentHealth; } }
     // public float timeInvicible = 2.0f;
     // public GameObject projectilePrefab;
@@ -18,7 +18,7 @@ public class FireMonsterController : MonoBehaviour
 
     void Start () {
         rigidBody2D = GetComponent<Rigidbody2D> ();
-        currentHealth = maxHealth;
+    //     currentHealth = maxHealth;
     //     invincibleTimer = 0;
         animator = GetComponent<Animator> ();
     }
@@ -33,16 +33,15 @@ public class FireMonsterController : MonoBehaviour
             lookDirection.Set (move.x, move.y);
             lookDirection.Normalize ();
         }
-        Debug.Log(currentHealth);
 
         animator.SetFloat ("x", lookDirection.x);
         animator.SetFloat ("y", lookDirection.y);
 
-        // Vector2 position = rigidBody2D.position;
+        Vector2 position = rigidBody2D.position;
 
-        // position = position + move * speed * Time.deltaTime;
+        position = position + move * speed * Time.deltaTime;
 
-        // rigidBody2D.MovePosition (position);
+        rigidBody2D.MovePosition (position);
         // if (invincibleTimer > 0f) {
         //     float newInvincibleTimer = invincibleTimer - Time.deltaTime;
         //     invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
@@ -65,19 +64,12 @@ public class FireMonsterController : MonoBehaviour
     // }
 
     // void Launch () {
-    //     GameObject arrowObject = Instantiate (arrowPrefab, GetComponent<Rigidbody2D>().position + Vector2.up * 0.5f, Quaternion.identity);
+    //     GameObject projectileObject = Instantiate (projectilePrefab, GetComponent<Rigidbody2D>().position + Vector2.up * 0.5f, Quaternion.identity);
 
-    //     Projectile arrow = arrowObject.GetComponent<Projectile> ();
-    //     arrow.Launch (lookDirection, 300);
+    //     Projectile projectile = projectileObject.GetComponent<Projectile> ();
+    //     projectile.Launch (lookDirection, 300);
 
-        //animator.SetTrigger ("Launch");
+    //     animator.SetTrigger ("Launch");
     // }
 
-    public void Dommage(int value) {
-        currentHealth -= value;
-        Debug.Log(currentHealth);
-        if (currentHealth <= 0) {
-            Destroy (gameObject);
-        }
-    }
 }

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireMonsterController : MonoBehaviour
+public class HeroController : MonoBehaviour
 {
-    public float speed = 4.0f;
-    public int maxHealth = 4;
+    public float speed = 5.0f;
+    public int maxHealth = 5;
     public int health { get { return currentHealth; } }
     // public float timeInvicible = 2.0f;
-    // public GameObject projectilePrefab;
+    public GameObject arrowPrefab;
     int currentHealth;
     // float invincibleTimer;
 
@@ -20,7 +20,7 @@ public class FireMonsterController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D> ();
         currentHealth = maxHealth;
     //     invincibleTimer = 0;
-        animator = GetComponent<Animator> ();
+        // animator = GetComponent<Animator> ();
     }
 
     void Update () {
@@ -33,23 +33,23 @@ public class FireMonsterController : MonoBehaviour
             lookDirection.Set (move.x, move.y);
             lookDirection.Normalize ();
         }
-        Debug.Log(currentHealth);
+        Debug.Log(lookDirection);
 
-        animator.SetFloat ("x", lookDirection.x);
-        animator.SetFloat ("y", lookDirection.y);
+        // animator.SetFloat ("x", lookDirection.x);
+        // animator.SetFloat ("y", lookDirection.y);
 
-        // Vector2 position = rigidBody2D.position;
+        Vector2 position = rigidBody2D.position;
 
-        // position = position + move * speed * Time.deltaTime;
+        position = position + move * speed * Time.deltaTime;
 
-        // rigidBody2D.MovePosition (position);
+        rigidBody2D.MovePosition (position);
         // if (invincibleTimer > 0f) {
         //     float newInvincibleTimer = invincibleTimer - Time.deltaTime;
         //     invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
         // }
-        // if (Input.GetKeyDown (KeyCode.C)) {
-        //     Launch ();
-        // }
+        if (Input.GetKeyDown (KeyCode.C)) {
+            Launch();
+        }
     }
 
     // public void ChangeHealth (int amount) {
@@ -64,20 +64,13 @@ public class FireMonsterController : MonoBehaviour
     //     UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     // }
 
-    // void Launch () {
-    //     GameObject arrowObject = Instantiate (arrowPrefab, GetComponent<Rigidbody2D>().position + Vector2.up * 0.5f, Quaternion.identity);
+    void Launch () {
+        GameObject arrowObject = Instantiate (arrowPrefab, GetComponent<Rigidbody2D>().position + new Vector2(0.2f, 0.1f), Quaternion.identity);
 
-    //     Projectile arrow = arrowObject.GetComponent<Projectile> ();
-    //     arrow.Launch (lookDirection, 300);
+        ArrowController ac = arrowObject.GetComponent<ArrowController> ();
+        ac.Launch (lookDirection, 300);
 
-        //animator.SetTrigger ("Launch");
-    // }
-
-    public void Dommage(int value) {
-        currentHealth -= value;
-        Debug.Log(currentHealth);
-        if (currentHealth <= 0) {
-            Destroy (gameObject);
-        }
+        // animator.SetTrigger ("Launch");
     }
+
 }
