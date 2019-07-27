@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
+
+    public static HeroController instance { get; private set; }
     public float speed = 5.0f;
     public int maxHealth = 5;
     public int health { get { return currentHealth; } }
@@ -20,7 +22,7 @@ public class HeroController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D> ();
         currentHealth = maxHealth;
     //     invincibleTimer = 0;
-        // animator = GetComponent<Animator> ();
+        animator = GetComponent<Animator> ();
     }
 
     void Update () {
@@ -35,8 +37,8 @@ public class HeroController : MonoBehaviour
         }
         Debug.Log(lookDirection);
 
-        // animator.SetFloat ("x", lookDirection.x);
-        // animator.SetFloat ("y", lookDirection.y);
+        animator.SetFloat ("x", lookDirection.x);
+        animator.SetFloat ("y", lookDirection.y);
 
         Vector2 position = rigidBody2D.position;
 
@@ -67,7 +69,8 @@ public class HeroController : MonoBehaviour
     void Launch () {
         GameObject arrowObject = Instantiate (arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
         ArrowController ac = arrowObject.GetComponent<ArrowController> ();
-        ac.Launch (lookDirection, 300);
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        ac.Launch (difference, 300);
 
         // animator.SetTrigger ("Launch");
     }

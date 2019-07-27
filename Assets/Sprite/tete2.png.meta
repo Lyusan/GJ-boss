@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: df829ee6b6faa5348b57421b4eec5896
+guid: 7e67a6e616ccb6d49946aa145c240fe2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1701976699240790331
-    second: crane_dos_stripes2_0
+      213: -6480239229747082284
+    second: tete2_0
   - first:
-      213: 6331786943246079754
-    second: crane_dos_stripes2_1
+      213: 7375535370548787304
+    second: tete2_1
   - first:
-      213: 4283806298092820174
-    second: crane_dos_stripes2_2
+      213: -4230027148585174155
+    second: tete2_2
   - first:
-      213: -637187885152745173
-    second: crane_dos_stripes2_3
+      213: -2875140544800583531
+    second: tete2_3
+  - first:
+      213: -5171986622739354197
+    second: tete2_4
+  - first:
+      213: 2535609009312811226
+    second: tete2_5
+  - first:
+      213: -1318688952762481572
+    second: tete2_6
+  - first:
+      213: 7428640114303698524
+    second: tete2_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -74,7 +86,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -85,7 +97,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -96,7 +108,7 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -107,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crane_dos_stripes2_0
+      name: tete2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30
-        height: 30
+        width: 45
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28bef947c7a1fae4c9490d6c28c7be5b
-      internalID: -1701976699240790331
+      spriteID: a46f5e33fc74b984d8d496a4d6e7d394
+      internalID: -6480239229747082284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crane_dos_stripes2_1
+      name: tete2_1
       rect:
         serializedVersion: 2
-        x: 30
+        x: 45
         y: 0
-        width: 30
-        height: 30
+        width: 45
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,41 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ac0f419809bb3f408a2f3e53ff835c3
-      internalID: 6331786943246079754
+      spriteID: c1acb410435d32445a08a087acc0471b
+      internalID: 7375535370548787304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crane_dos_stripes2_2
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0386c521a555d1f428da8cbc97a360ae
-      internalID: 4283806298092820174
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crane_dos_stripes2_3
+      name: tete2_2
       rect:
         serializedVersion: 2
         x: 90
         y: 0
-        width: 30
-        height: 30
+        width: 45
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,8 +175,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e8ca69268f885b49bf1e2858c3faa7e
-      internalID: -637187885152745173
+      spriteID: f6a6b7bd3445fe744881483e1ebd8199
+      internalID: -4230027148585174155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tete2_3
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 0
+        width: 45
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a03e46615f1ddc947ae469143f22d498
+      internalID: -2875140544800583531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tete2_4
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 45
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c6b59aa17d37cc41ae271b8e7481a4f
+      internalID: -5171986622739354197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tete2_5
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 0
+        width: 45
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71e4997bda78fdf4a989e7fc2389afad
+      internalID: 2535609009312811226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tete2_6
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 45
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 467213e3f5fe52e46873e8ffbdb6e198
+      internalID: -1318688952762481572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tete2_7
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 0
+        width: 45
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a8f4545df34c084e825fff739cde60d
+      internalID: 7428640114303698524
       vertices: []
       indices: 
       edges: []
@@ -193,7 +289,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 379582df3ec092e4693e5975ff13f361
+    spriteID: 3526784e43e66e148b743ebfa48462cd
     internalID: 0
     vertices: []
     indices: 
@@ -202,7 +298,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

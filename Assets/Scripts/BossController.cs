@@ -5,10 +5,12 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     public float speed = 5.0f;
-    public int maxHealth = 10;
+    public int maxHealth = 30;
     public int health { get { return currentHealth; } }
-    // public float timeInvicible = 2.0f;
-    // public GameObject projectilePrefab;
+    public float laserBlockTime = 0.8f;
+    private float blockTimer = 0.8f;
+    public GameObject laserPrefab;
+    public GameObject monsterPrefab;
     int currentHealth;
     // float invincibleTimer;
 
@@ -18,9 +20,9 @@ public class BossController : MonoBehaviour
 
     void Start () {
         rigidBody2D = GetComponent<Rigidbody2D> ();
-    //     currentHealth = maxHealth;
-    //     invincibleTimer = 0;
-        animator = GetComponent<Animator> ();
+        currentHealth = maxHealth;
+        blockTimer = 0;
+        // animator = GetComponent<Animator> ();
     }
 
     void Update () {
@@ -33,22 +35,26 @@ public class BossController : MonoBehaviour
             lookDirection.Set (move.x, move.y);
             lookDirection.Normalize ();
         }
+        Debug.Log(lookDirection);
 
-        animator.SetFloat ("x", lookDirection.x);
-        animator.SetFloat ("y", lookDirection.y);
+        // animator.SetFloat ("x", lookDirection.x);
+        // animator.SetFloat ("y", lookDirection.y);
+        if (blockTimer == 0f) {
+            Vector2 position = rigidBody2D.position;
+            position = position + move * speed * Time.deltaTime;
+            rigidBody2D.MovePosition (position);
+        }
 
-        Vector2 position = rigidBody2D.position;
-
-        position = position + move * speed * Time.deltaTime;
-
-        rigidBody2D.MovePosition (position);
-        // if (invincibleTimer > 0f) {
-        //     float newInvincibleTimer = invincibleTimer - Time.deltaTime;
-        //     invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
-        // }
-        // if (Input.GetKeyDown (KeyCode.C)) {
-        //     Launch ();
-        // }
+        if (blockTimer > 0f) {
+            blockTimer -= Time.deltaTime;
+            blockTimer = blockTimer >= 0f ? blockTimer : 0f;
+        }
+        if (Input.GetKeyDown (KeyCode.Mouse0)) {
+            Launch();
+        }
+        if (Input.GetKeyDown (KeyCode.Mouse1)) {
+            Invoc();
+        }
     }
 
     // public void ChangeHealth (int amount) {
@@ -63,13 +69,18 @@ public class BossController : MonoBehaviour
     //     UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     // }
 
-    // void Launch () {
-    //     GameObject projectileObject = Instantiate (projectilePrefab, GetComponent<Rigidbody2D>().position + Vector2.up * 0.5f, Quaternion.identity);
+    void Launch () {
+        GameObject laserObject = Instantiate (laserPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+        LaserController lc = laserObject.GetComponent<LaserController> ();
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        lc.Launch(-difference);
+        blockTimer = laserBlockTime;
 
-    //     Projectile projectile = projectileObject.GetComponent<Projectile> ();
-    //     projectile.Launch (lookDirection, 300);
+        // animator.SetTrigger ("Launch");
+    }
 
-    //     animator.SetTrigger ("Launch");
-    // }
+    void Invoc() {
+        GameObject invoc = Instantiate (monsterPrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+    }
 
 }

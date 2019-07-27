@@ -9,7 +9,7 @@ public class FireMonsterController : MonoBehaviour
     public float speed = 4.0f;
     public int maxHealth = 4;
     public int health { get { return currentHealth; } }
-    public float timeInvicible = 2.0f;
+    public float timeInvicible = 0.5f;
     // public GameObject projectilePrefab;
     int currentHealth;
     float invincibleTimer;
@@ -26,6 +26,11 @@ public class FireMonsterController : MonoBehaviour
         invincibleTimer = 0f;
         timeDead = 2f;
         animator = GetComponent<Animator> ();
+        aIPath.target = HeroController.instance.transform;
+    }
+
+    void Awake() {
+        // aIPath.destination = HeroController.instance.transform.position;
     }
 
     void Update () {
@@ -33,6 +38,7 @@ public class FireMonsterController : MonoBehaviour
         float vertical = Input.GetAxis ("Vertical");
         Vector2 move = new Vector2 (horizontal, vertical);
 
+        // aIPath.destination = HeroController.instance.transform.position;
         if (!Mathf.Approximately (move.x, 0.0f) || !Mathf.Approximately (move.y, 0.0f)) {
             lookDirection.Set (move.x, move.y);
             lookDirection.Normalize ();
