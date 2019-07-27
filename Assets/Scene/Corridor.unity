@@ -350,7 +350,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -1179,7 +1179,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 5dac7ba6e49ab4442aa883085cade4b3, type: 3}
+  m_Sprite: {fileID: 2199439287838421864, guid: 2634b3c243d4ce5459a3bf2034656787,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1217,18 +1218,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020877719, y: 0.07933569}
+  m_Offset: {x: 0.020877719, y: -0.22093293}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4333333, y: 1.3666667}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1.4333333, y: 1.3666667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.42284858, y: 0.65682197}
+  m_Size: {x: 0.42284858, y: 0.5516433}
   m_EdgeRadius: 0
 --- !u!50 &1268068377
 Rigidbody2D:
@@ -1661,6 +1662,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554928846376137794, guid: 76687d00f4434554e99555add70dabfd,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76687d00f4434554e99555add70dabfd, type: 3}
