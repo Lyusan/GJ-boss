@@ -1,19 +1,28 @@
 fileFormatVersion: 2
-guid: f04e5a6bd78189147884f26d1a413ffb
+guid: 6b5c66d410f261242807dc067d5011ab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 190408972160747880
-    second: crane_dos_stripes_0
+      213: 3772968643035459412
+    second: death_skull_sprite_0
   - first:
-      213: -6287210963660072486
-    second: crane_dos_stripes_1
+      213: 2647995454725172201
+    second: death_skull_sprite_1
   - first:
-      213: -748836276457800116
-    second: crane_dos_stripes_2
+      213: 7169293924983690712
+    second: death_skull_sprite_2
   - first:
-      213: -8957612052475389420
-    second: crane_dos_stripes_3
+      213: -9140065492159882016
+    second: death_skull_sprite_3
+  - first:
+      213: -3492359715672020461
+    second: death_skull_sprite_4
+  - first:
+      213: 1450874248453868949
+    second: death_skull_sprite_5
+  - first:
+      213: 4214441968686182935
+    second: death_skull_sprite_6
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -93,17 +102,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -118,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crane_dos_stripes_0
+      name: death_skull_sprite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b19dd3ebf29de774ebcc57ffe0648191
-      internalID: 190408972160747880
+      spriteID: 3b73cd1f561aad343b58fa2227da7f68
+      internalID: 3772968643035459412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crane_dos_stripes_1
+      name: death_skull_sprite_1
       rect:
         serializedVersion: 2
         x: 30
@@ -153,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3c53309eceb6d344a5ada2d71855589
-      internalID: -6287210963660072486
+      spriteID: 04bd7328cbf06ae4cb305a634ac8b678
+      internalID: 2647995454725172201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crane_dos_stripes_2
+      name: death_skull_sprite_2
       rect:
         serializedVersion: 2
         x: 60
@@ -174,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccdb0ad28047fd2478cd03b962e58508
-      internalID: -748836276457800116
+      spriteID: 6ecf346fb471b1740aab5aeeb4d8745d
+      internalID: 7169293924983690712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crane_dos_stripes_3
+      name: death_skull_sprite_3
       rect:
         serializedVersion: 2
         x: 90
@@ -195,8 +193,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40ee0663cda65f34ab258a1d37a1cf7b
-      internalID: -8957612052475389420
+      spriteID: b1886860ab7d4674e8b4df36630feee6
+      internalID: -9140065492159882016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death_skull_sprite_4
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 120b5bf20e7317549bf27cdaf1003dbd
+      internalID: -3492359715672020461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death_skull_sprite_5
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c92d9992fec04f748938bf64969563d8
+      internalID: 1450874248453868949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death_skull_sprite_6
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25a2a816c9018e148926b32fcf87348c
+      internalID: 4214441968686182935
       vertices: []
       indices: 
       edges: []
@@ -204,7 +265,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b3e92fd4bf16d4b4fa32cb14e89a6083
+    spriteID: ff388ff3e98a1ba4c97feffd07dac0ba
     internalID: 0
     vertices: []
     indices: 

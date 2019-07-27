@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Pathfinding;
 public class FireMonsterController : MonoBehaviour
 {
+
+    public AIPath aIPath;
     public float speed = 4.0f;
     public int maxHealth = 4;
     public int health { get { return currentHealth; } }
-    // public float timeInvicible = 2.0f;
+    public float timeInvicible = 2.0f;
     // public GameObject projectilePrefab;
     int currentHealth;
-    // float invincibleTimer;
+    float invincibleTimer;
+    float timeDead;
 
     Rigidbody2D rigidBody2D;
     Animator animator;
@@ -18,15 +21,16 @@ public class FireMonsterController : MonoBehaviour
 
     void Start () {
         rigidBody2D = GetComponent<Rigidbody2D> ();
+        aIPath = GetComponent<AIPath> ();
         currentHealth = maxHealth;
-    //     invincibleTimer = 0;
+        invincibleTimer = 0f;
+        timeDead = 2f;
         animator = GetComponent<Animator> ();
     }
 
     void Update () {
         float horizontal = Input.GetAxis ("Horizontal");
         float vertical = Input.GetAxis ("Vertical");
-
         Vector2 move = new Vector2 (horizontal, vertical);
 
         if (!Mathf.Approximately (move.x, 0.0f) || !Mathf.Approximately (move.y, 0.0f)) {
@@ -37,16 +41,26 @@ public class FireMonsterController : MonoBehaviour
 
         animator.SetFloat ("x", lookDirection.x);
         animator.SetFloat ("y", lookDirection.y);
-
+        if (currentHealth <= 0) {
+            animator.SetBool ("dead", true);
+            timeDead -= Time.deltaTime;
+            if (timeDead <= 0)
+                Destroy (gameObject);
+        }
+        if (invincibleTimer > 0f)
+            animator.SetBool("invicible", true);
         // Vector2 position = rigidBody2D.position;
 
         // position = position + move * speed * Time.deltaTime;
 
         // rigidBody2D.MovePosition (position);
-        // if (invincibleTimer > 0f) {
-        //     float newInvincibleTimer = invincibleTimer - Time.deltaTime;
-        //     invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
-        // }
+        if (invincibleTimer > 0f) {
+            float newInvincibleTimer = invincibleTimer - Time.deltaTime;
+            invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
+            if (invincibleTimer == 0f) {
+                animator.SetBool("invicible", false);
+            }
+        }
         // if (Input.GetKeyDown (KeyCode.C)) {
         //     Launch ();
         // }
@@ -74,10 +88,13 @@ public class FireMonsterController : MonoBehaviour
     // }
 
     public void Dommage(int value) {
-        currentHealth -= value;
-        Debug.Log(currentHealth);
-        if (currentHealth <= 0) {
-            Destroy (gameObject);
+        if (invincibleTimer == 0f) {
+            currentHealth -= value;
+            Debug.Log(currentHealth);
+            if (currentHealth <= 0) {
+                aIPath.isStopped = true;
+            }
+            invincibleTimer = timeInvicible;
         }
     }
 }

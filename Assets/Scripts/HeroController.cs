@@ -67,10 +67,7 @@ public class HeroController : MonoBehaviour
     void Launch () {
         GameObject arrowObject = Instantiate (arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
         ArrowController ac = arrowObject.GetComponent<ArrowController> ();
-        Debug.Log((Vector2)Input.mousePosition);
-        Debug.Log((Vector2)rigidBody2D.position);
-        Debug.Log((Vector2)Input.mousePosition - (Vector2)rigidBody2D.position);
-        ac.Launch ((Vector2)rigidBody2D.position - (Vector2)Input.mousePosition, 0.2f);
+        ac.Launch (lookDirection, 300);
 
         // animator.SetTrigger ("Launch");
     }

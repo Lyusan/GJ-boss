@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 28f5c7ef8cc65e146af5d79ba71d90ef
+guid: 28d3ec4b5c46e7f49af3a51316b4fedf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2919802365818402743
-    second: crane_stripes_0
+      213: -8838892685517456986
+    second: crane_stripes2_0
   - first:
-      213: 8843871035471605380
-    second: crane_stripes_1
+      213: 961350812852160103
+    second: crane_stripes2_1
   - first:
-      213: -8706108070474740222
-    second: crane_stripes_2
+      213: 5900874334348281063
+    second: crane_stripes2_2
   - first:
-      213: -2108432655449853
-    second: crane_stripes_3
+      213: -5403371296364797690
+    second: crane_stripes2_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -93,17 +93,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -118,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crane_stripes_0
+      name: crane_stripes2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ace6626cc7aa6b4e89c35b7b84791f4
-      internalID: -2919802365818402743
+      spriteID: e4b3dcc8148d2824bb4b1c3891cb569f
+      internalID: -8838892685517456986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crane_stripes_1
+      name: crane_stripes2_1
       rect:
         serializedVersion: 2
         x: 30
@@ -153,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77b9249b56dc9c14babe49bebcd4248a
-      internalID: 8843871035471605380
+      spriteID: 3b61403f8dd809f4bae17937738f95a4
+      internalID: 961350812852160103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crane_stripes_2
+      name: crane_stripes2_2
       rect:
         serializedVersion: 2
         x: 60
@@ -174,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb5163fcc89b98c429970e3606b7fc83
-      internalID: -8706108070474740222
+      spriteID: d442dd6c5a95f904195ed468293c5b8a
+      internalID: 5900874334348281063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crane_stripes_3
+      name: crane_stripes2_3
       rect:
         serializedVersion: 2
         x: 90
@@ -195,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0cf0d8fb9366a9468691977ec4c942c
-      internalID: -2108432655449853
+      spriteID: b20e3df6c96f3c7448ff608c393ebe90
+      internalID: -5403371296364797690
       vertices: []
       indices: 
       edges: []
@@ -204,7 +193,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1cd12b5a8ccc5454f929e1da1b0e35e3
+    spriteID: 64e5d7c17a8128a49a2ea1d415ca5b1c
     internalID: 0
     vertices: []
     indices: 

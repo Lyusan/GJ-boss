@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: e464e3e4d46e42a48a940761e5f7fd57
+guid: 445b418804003d542981213e2b16cf7c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2154615768653912243
-    second: "crane_cote\u0301_stripes2_0"
+      213: -8833283704633828125
+    second: "crane_cote\u0301_stripesG_0"
   - first:
-      213: -8608531954140000301
-    second: "crane_cote\u0301_stripes2_1"
+      213: -6565717807396621564
+    second: "crane_cote\u0301_stripesG_1"
   - first:
-      213: 6199552321014213568
-    second: "crane_cote\u0301_stripes2_2"
+      213: -6533367116826304386
+    second: "crane_cote\u0301_stripesG_2"
   - first:
-      213: -7238143279394521212
-    second: "crane_cote\u0301_stripes2_3"
+      213: 1187329843426655547
+    second: "crane_cote\u0301_stripesG_3"
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -93,17 +93,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -118,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "crane_cote\u0301_stripes2_0"
+      name: "crane_cote\u0301_stripesG_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -132,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67133fe12de10ef4fac26e381b789b38
-      internalID: 2154615768653912243
+      spriteID: 158f73ac0b774414fb3843c6469ea835
+      internalID: -8833283704633828125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "crane_cote\u0301_stripes2_1"
+      name: "crane_cote\u0301_stripesG_1"
       rect:
         serializedVersion: 2
         x: 30
@@ -153,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0213ad9a3b3eb04ba8b2d2b4c26552e
-      internalID: -8608531954140000301
+      spriteID: fbb0704d0ecae6a4bbb1618c32e0dbaa
+      internalID: -6565717807396621564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "crane_cote\u0301_stripes2_2"
+      name: "crane_cote\u0301_stripesG_2"
       rect:
         serializedVersion: 2
         x: 60
@@ -174,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c86f272f46e425745a477990832d1c88
-      internalID: 6199552321014213568
+      spriteID: 9179afe5190739a41bf4b008ea2fff87
+      internalID: -6533367116826304386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "crane_cote\u0301_stripes2_3"
+      name: "crane_cote\u0301_stripesG_3"
       rect:
         serializedVersion: 2
         x: 90
@@ -195,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fca413ccc8155f409351cc4dac7470b
-      internalID: -7238143279394521212
+      spriteID: 7b5fbf93b0b48d04cab513aa14d4343b
+      internalID: 1187329843426655547
       vertices: []
       indices: 
       edges: []
@@ -204,7 +193,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: da18f22999d43014d8059e1720f4537d
+    spriteID: 7e755fa23b8a2cb4d85d7944b5f6b433
     internalID: 0
     vertices: []
     indices: 
