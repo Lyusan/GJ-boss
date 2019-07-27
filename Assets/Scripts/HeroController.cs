@@ -47,7 +47,7 @@ public class HeroController : MonoBehaviour
         //     float newInvincibleTimer = invincibleTimer - Time.deltaTime;
         //     invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
         // }
-        if (Input.GetKeyDown (KeyCode.C)) {
+        if (Input.GetKeyDown (KeyCode.Mouse0)) {
             Launch();
         }
     }
@@ -65,10 +65,12 @@ public class HeroController : MonoBehaviour
     // }
 
     void Launch () {
-        GameObject arrowObject = Instantiate (arrowPrefab, GetComponent<Rigidbody2D>().position + new Vector2(0.2f, 0.1f), Quaternion.identity);
-
+        GameObject arrowObject = Instantiate (arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
         ArrowController ac = arrowObject.GetComponent<ArrowController> ();
-        ac.Launch (lookDirection, 300);
+        Debug.Log((Vector2)Input.mousePosition);
+        Debug.Log((Vector2)rigidBody2D.position);
+        Debug.Log((Vector2)Input.mousePosition - (Vector2)rigidBody2D.position);
+        ac.Launch ((Vector2)rigidBody2D.position - (Vector2)Input.mousePosition, 0.2f);
 
         // animator.SetTrigger ("Launch");
     }
