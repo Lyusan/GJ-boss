@@ -40,6 +40,11 @@ public class HeroController : MonoBehaviour
         Vector2 move;
         invincibleTimer -= Time.deltaTime;
         deathTimer -= Time.deltaTime;
+        BossController[] boss = GameObject.FindObjectsOfType<BossController>();
+        if (boss.Length > 0 && boss[0].health <= 0) {
+            animator.SetBool("moving", false);
+            return;
+        }
         if (deathTimer > 0)
         {
             dead = true;
