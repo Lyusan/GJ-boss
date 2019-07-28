@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1992248577020974536}
   m_Layer: 0
   m_Name: laser
-  m_TagString: Untagged
+  m_TagString: BadGuy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_Offset: {x: -0.013769597, y: -3.4109147}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.48597527, y: 0.9294945}
     oldSize: {x: 1.4333333, y: 15.866667}
     newSize: {x: 1.03125, y: 7.65625}
     adaptiveTilingThreshold: 0.5

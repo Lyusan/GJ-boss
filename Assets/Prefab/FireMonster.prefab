@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 2008817154}
   m_Layer: 0
   m_Name: FireMonster
-  m_TagString: Untagged
+  m_TagString: BadGuy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   aIPath: {fileID: 0}
   speed: 2
   maxHealth: 3
+  invocationTimer: 0
   timeInvicible: 0.5
 --- !u!114 &2298599292265361316
 MonoBehaviour:

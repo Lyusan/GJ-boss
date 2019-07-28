@@ -20,12 +20,16 @@ public class HeroController : MonoBehaviour
     Rigidbody2D rigidBody2D;
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
-
+    float invincibleTimer;
+    float deathTimer;
+    bool dead;
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        //     invincibleTimer = 0;
+        invincibleTimer = 0;
+        deathTimer = 0;
+        dead = false;
         randomDirectionTimer = 0f;
         movingDirection = new Vector2(0f, 0f);
         animator = GetComponent<Animator>();
@@ -34,63 +38,82 @@ public class HeroController : MonoBehaviour
     void Update()
     {
         Vector2 move;
-        if (auto)
+        invincibleTimer -= Time.deltaTime;
+        deathTimer -= Time.deltaTime;
+        if (deathTimer > 0)
         {
-            if (randomDirectionTimer <= 0)
+            dead = true;
+            animator.SetBool("death", true);
+            auto = false;
+        } else {
+            if (invincibleTimer > 0)
+                animator.SetBool("invicible", true);
+            else
+                animator.SetBool("invicible", false);
+        }
+        if (deathTimer <= 0 && dead) {
+            Destroy(gameObject);
+        }
+        if (!dead)
+        {
+            if (auto)
             {
-                randomDirectionTimer = Random.Range(0.2f, 1f);
-                if (Random.Range(0f, 1f) > 0.8f)
+                if (randomDirectionTimer <= 0)
                 {
-                    movingDirection = new Vector2(0f, 0f);
+                    randomDirectionTimer = Random.Range(0.2f, 1f);
+                    if (Random.Range(0f, 1f) > 0.8f)
+                    {
+                        movingDirection = new Vector2(0f, 0f);
+                    }
+                    else
+                    {
+                        movingDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                    }
+                    ShootOnClosestEnemy();
                 }
                 else
                 {
-                    movingDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                    randomDirectionTimer -= Time.deltaTime;
                 }
-                ShootOnClosestEnemy();
+
+                move = movingDirection;
+
+                // if (invincibleTimer > 0f) {
+                //     float newInvincibleTimer = invincibleTimer - Time.deltaTime;
+                //     invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
+                // }
+
             }
             else
             {
-                randomDirectionTimer -= Time.deltaTime;
+                float horizontal = Input.GetAxis("Horizontal");
+                float vertical = Input.GetAxis("Vertical");
+                move = new Vector2(horizontal, vertical);
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    Launch();
+                }
             }
-
-            move = movingDirection;
-
-            // if (invincibleTimer > 0f) {
-            //     float newInvincibleTimer = invincibleTimer - Time.deltaTime;
-            //     invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
-            // }
-
-        }
-        else
-        {
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-            move = new Vector2(horizontal, vertical);
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
             {
-                Launch();
+                lookDirection.Set(move.x, move.y);
+                lookDirection.Normalize();
             }
+            // Debug.Log(lookDirection);
+
+            animator.SetFloat("x", lookDirection.x);
+            animator.SetFloat("y", lookDirection.y);
+            if (move.x != 0 || move.y != 0)
+                animator.SetBool("moving", true);
+            else
+                animator.SetBool("moving", false);
+
+            Vector2 position = rigidBody2D.position;
+
+            position = position + move * speed * Time.deltaTime;
+
+            rigidBody2D.MovePosition(position);
         }
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
-        {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
-        }
-        // Debug.Log(lookDirection);
-
-        animator.SetFloat("x", lookDirection.x);
-        animator.SetFloat("y", lookDirection.y);
-        if (move.x != 0 || move.y != 0)
-            animator.SetBool("moving", true);
-        else
-            animator.SetBool("moving", false);
-
-        Vector2 position = rigidBody2D.position;
-
-        position = position + move * speed * Time.deltaTime;
-
-        rigidBody2D.MovePosition(position);
     }
 
     // public void ChangeHealth (int amount) {
@@ -120,12 +143,7 @@ public class HeroController : MonoBehaviour
         // animator.SetTrigger ("Launch");
     }
 
-    public void Dommage(int value)
-    {
-        currentHealth -= value;
-        if (currentHealth <= 0)
-            Destroy(gameObject);
-    }
+
 
     void ShootOnClosestEnemy()
     {
@@ -177,10 +195,26 @@ public class HeroController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (auto) {
+        if (auto)
+        {
             movingDirection = -movingDirection;
             randomDirectionTimer = 1f;
             ShootOnClosestEnemy();
+        }
+        if (col.gameObject.tag == "BadGuy")
+            Dommage(1);
+    }
+
+    public void Dommage(int value)
+    {
+        if (invincibleTimer <= 0)
+        {
+            currentHealth -= value;
+            invincibleTimer = 0.5f;
+            if (currentHealth <= 0) {
+                deathTimer = 2f;
+                animator.SetBool("death", true);
+            }
         }
     }
 }

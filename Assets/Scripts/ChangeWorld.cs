@@ -11,7 +11,6 @@ public class ChangeWorld : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             SceneManager.LoadScene(level);
-         
         }
     }
 }
