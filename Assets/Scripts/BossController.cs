@@ -11,6 +11,10 @@ public class BossController : MonoBehaviour
     private float blockTimer = 0.8f;
     public GameObject laserPrefab;
     public GameObject monsterPrefab;
+    public GameObject handFallPrefab;
+    private float laserTimer;
+    private float monsterTimer;
+    private float handFallTimer;
     int currentHealth;
     // float invincibleTimer;
 
@@ -49,12 +53,21 @@ public class BossController : MonoBehaviour
             blockTimer -= Time.deltaTime;
             blockTimer = blockTimer >= 0f ? blockTimer : 0f;
         }
-        if (Input.GetKeyDown (KeyCode.Mouse0)) {
+        if (laserTimer <= 0f && Input.GetKeyDown (KeyCode.Mouse0)) {
             Launch();
+            laserTimer = 1f;
         }
-        if (Input.GetKeyDown (KeyCode.Mouse1)) {
+        if (monsterTimer <= 0f && Input.GetKeyDown (KeyCode.Mouse1)) {
             Invoc();
+            monsterTimer = 2f;
         }
+        if (handFallTimer <= 0f && vertical < 0) {
+            HandFall();
+            handFallTimer = 1f;
+        }
+        laserTimer -= Time.deltaTime;
+        monsterTimer -= Time.deltaTime;
+        handFallTimer -= Time.deltaTime;
     }
 
     // public void ChangeHealth (int amount) {
@@ -87,6 +100,8 @@ public class BossController : MonoBehaviour
         GameObject invoc = Instantiate (monsterPrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
     }
 
-    
+    void HandFall() {
+        GameObject hand = Instantiate (handFallPrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+    }
 
 }
