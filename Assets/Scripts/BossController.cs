@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     public float speed = 5.0f;
-    public int maxHealth = 25;
+    public int maxHealth = 100;
     public int health { get { return currentHealth; } }
     public float laserBlockTime = 1f;
     private float blockTimer = 0.8f;
@@ -24,12 +24,14 @@ public class BossController : MonoBehaviour
     bool dead;
     Rigidbody2D rigidBody2D;
     Vector2 lookDirection = new Vector2(1, 0);
+    float startGameTimer;
 
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         blockTimer = 0;
+        startGameTimer = 5f;
         animator = GetComponent<Animator>();
     }
 
@@ -37,6 +39,29 @@ public class BossController : MonoBehaviour
     {
         invincibleTimer -= Time.deltaTime;
         deathTimer -= Time.deltaTime;
+        startGameTimer -= Time.deltaTime;
+        if (startGameTimer > 0f) {
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            Vector2 move = new Vector2(horizontal, vertical);
+
+            if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+            {
+                lookDirection.Set(move.x, move.y);
+                lookDirection.Normalize();
+            }
+            // Debug.Log(lookDirection);
+
+            // animator.SetFloat ("x", lookDirection.x);
+            // animator.SetFloat ("y", lookDirection.y);
+            if (blockTimer == 0f)
+            {
+                Vector2 position = rigidBody2D.position;
+                position = position + move * speed * Time.deltaTime;
+                rigidBody2D.MovePosition(position);
+            }
+            return;
+        }
         if (deathTimer > 0)
         {
             dead = true;
@@ -147,7 +172,7 @@ public class BossController : MonoBehaviour
         if (invincibleTimer <= 0)
         {
             currentHealth -= value;
-            invincibleTimer = 0.5f;
+            invincibleTimer = 0.2f;
             if (currentHealth <= 0)
             {
                 deathTimer = 4f;

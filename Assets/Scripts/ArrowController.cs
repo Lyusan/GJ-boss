@@ -23,7 +23,7 @@ public class ArrowController : MonoBehaviour
     public void Launch (float angle, float force) {
         Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.down;
         rigidbody2d.AddForce(dir * force);
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(angle + 180, Vector3.forward);
     }
     void OnCollisionEnter2D (Collision2D other) {
         FireMonsterController e = other.collider.GetComponent<FireMonsterController> ();

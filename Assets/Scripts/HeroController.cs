@@ -23,12 +23,16 @@ public class HeroController : MonoBehaviour
     float invincibleTimer;
     public float deathTimer;
     public bool dead;
+    float popTimer;
+    float startGameTimer;
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         invincibleTimer = 0;
         deathTimer = 0;
+        popTimer = 1.5f;
+        startGameTimer = 5f;
         dead = false;
         randomDirectionTimer = 0f;
         movingDirection = new Vector2(0f, 0f);
@@ -40,7 +44,17 @@ public class HeroController : MonoBehaviour
         Vector2 move;
         invincibleTimer -= Time.deltaTime;
         deathTimer -= Time.deltaTime;
+        popTimer -= Time.deltaTime;
+        startGameTimer -= Time.deltaTime;
         BossController[] boss = GameObject.FindObjectsOfType<BossController>();
+        if (popTimer > 0f && auto == true) {
+            GetComponent<Renderer>().sortingOrder = -10;
+        } else {
+            GetComponent<Renderer>().sortingOrder = 1;
+        }
+        if (startGameTimer > 0f && auto) {
+            return;
+        }
         if (boss.Length > 0 && boss[0].health <= 0) {
             animator.SetBool("moving", false);
             return;
