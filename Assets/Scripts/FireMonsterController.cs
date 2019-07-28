@@ -53,7 +53,7 @@ public class FireMonsterController : MonoBehaviour
             if (timeDead <= 0)
                 Destroy (gameObject);
         }
-        if (invincibleTimer > 0f)
+        if (currentHealth >= 0 && invincibleTimer > 0f)
             animator.SetBool("invicible", true);
         // Vector2 position = rigidBody2D.position;
 

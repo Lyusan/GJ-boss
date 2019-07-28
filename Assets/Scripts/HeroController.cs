@@ -39,12 +39,18 @@ public class HeroController : MonoBehaviour
 
         animator.SetFloat ("x", lookDirection.x);
         animator.SetFloat ("y", lookDirection.y);
+        if (move.x != 0 || move.y != 0)
+            animator.SetBool ("moving", true);
+        else
+            animator.SetBool ("moving", false);
 
         Vector2 position = rigidBody2D.position;
 
         position = position + move * speed * Time.deltaTime;
 
         rigidBody2D.MovePosition (position);
+
+
         // if (invincibleTimer > 0f) {
         //     float newInvincibleTimer = invincibleTimer - Time.deltaTime;
         //     invincibleTimer = newInvincibleTimer >= 0f ? newInvincibleTimer : 0f;
