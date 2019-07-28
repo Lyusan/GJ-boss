@@ -34,7 +34,11 @@ public class HeroController : MonoBehaviour
         // float vertical = Input.GetAxis ("Vertical");
         if (randomDirectionTimer <= 0) {
             randomDirectionTimer = Random.Range(0.2f, 1f);
-            movingDirection = new Vector2 (Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            if (Random.Range(0f, 1f) > 0.8f) {
+                movingDirection = new Vector2 (0f, 0f);
+            } else {
+                movingDirection = new Vector2 (Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            }
             ShootOnClosestEnemy();
         } else {
             randomDirectionTimer -= Time.deltaTime;
@@ -111,15 +115,17 @@ public class HeroController : MonoBehaviour
         foreach (FireMonsterController currentEnemy in allEnemies)
         {
             float distanceToEnemy = (currentEnemy.transform.position - gameObject.transform.position).sqrMagnitude;
-            Debug.Log("Ennemy: " + currentEnemy);
-            Debug.Log("Distance: " + distanceToEnemy);
-            Debug.Log("Old: " + closestEnemyDistance);
-            if (distanceToEnemy < 5000f && distanceToEnemy < closestEnemyDistance) {
-                closestEnemyDistance = distanceToEnemy;
-                closestEnemy = currentEnemy;
-            }   
-            Debug.Log("New: " + closestEnemyDistance);
-            Debug.Log("New enemy: " + closestEnemy);
+            // Debug.Log("Ennemy: " + currentEnemy);
+            // Debug.Log("Distance: " + distanceToEnemy);
+            // Debug.Log("Old: " + closestEnemyDistance);
+            if (currentEnemy.health > 0 && currentEnemy.invocationTimer <= 0) {
+                if (distanceToEnemy < 5000f && distanceToEnemy < closestEnemyDistance) {
+                    closestEnemyDistance = distanceToEnemy;
+                    closestEnemy = currentEnemy;
+                }
+            }
+            // Debug.Log("New: " + closestEnemyDistance);
+            // Debug.Log("New enemy: " + closestEnemy);
         }
         Vector3 difference;
         if (closestEnemy == null) {
@@ -132,13 +138,23 @@ public class HeroController : MonoBehaviour
             difference = closestEnemy.transform.position - transform.position;
         }
         GameObject arrowObject = Instantiate (arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+        GameObject arrowObject2 = Instantiate (arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+        GameObject arrowObject3 = Instantiate (arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
         ArrowController ac = arrowObject.GetComponent<ArrowController> ();
+        ArrowController ac2 = arrowObject2.GetComponent<ArrowController> ();
+        ArrowController ac3 = arrowObject3.GetComponent<ArrowController> ();
         difference = -difference;
         float angle = Mathf.Atan2(-difference.x, difference.y) * Mathf.Rad2Deg;
-        //ac.Launch(angle + 100, 300);
-        // ac.Launch(angle - 100, 300);
         Debug.Log("Arrow angle: " + closestEnemy);
         ac.Launch (angle, 300);
-        Debug.DrawLine (this.transform.position, closestEnemy.transform.position);
+        ac2.Launch(angle + 20, 300);
+        ac3.Launch(angle - 20, 300);
+    }
+
+    void OnCollisionEnter2D (Collision2D col)
+    {
+        movingDirection = -movingDirection;
+        randomDirectionTimer = 1f;
+        ShootOnClosestEnemy();
     }
 }

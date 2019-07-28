@@ -8,6 +8,7 @@ public class FireMonsterController : MonoBehaviour
     public AIPath aIPath;
     public float speed = 4.0f;
     public int maxHealth = 4;
+    public float invocationTimer;
     public int health { get { return currentHealth; } }
     public float timeInvicible = 0.5f;
     // public GameObject projectilePrefab;
@@ -21,9 +22,11 @@ public class FireMonsterController : MonoBehaviour
 
     void Start () {
         rigidBody2D = GetComponent<Rigidbody2D> ();
+        rigidBody2D.simulated = false;
         aIPath = GetComponent<AIPath> ();
         currentHealth = maxHealth;
         invincibleTimer = 0f;
+        invocationTimer = 2f;
         timeDead = 2f;
         animator = GetComponent<Animator> ();
     }
@@ -46,9 +49,17 @@ public class FireMonsterController : MonoBehaviour
 
         animator.SetFloat ("x", lookDirection.x);
         animator.SetFloat ("y", lookDirection.y);
+        if (invocationTimer > 0) {
+            invocationTimer -= Time.deltaTime;
+            animator.SetBool("invocation", true);
+        } else {
+            animator.SetBool("invocation", false);
+            rigidBody2D.simulated = true;
+        }
         if (currentHealth <= 0) {
             animator.SetBool ("dead", true);
             timeDead -= Time.deltaTime;
+            rigidBody2D.simulated = false;
             if (timeDead <= 0)
                 Destroy (gameObject);
         }
