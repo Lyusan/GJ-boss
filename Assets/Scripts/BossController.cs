@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     public float speed = 5.0f;
-    public int maxHealth = 10;
+    public int maxHealth = 25;
     public int health { get { return currentHealth; } }
     public float laserBlockTime = 1f;
     private float blockTimer = 0.8f;

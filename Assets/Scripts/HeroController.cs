@@ -21,8 +21,8 @@ public class HeroController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
     float invincibleTimer;
-    float deathTimer;
-    bool dead;
+    public float deathTimer;
+    public bool dead;
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
