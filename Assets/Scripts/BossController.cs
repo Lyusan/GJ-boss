@@ -7,7 +7,7 @@ public class BossController : MonoBehaviour
     public float speed = 5.0f;
     public int maxHealth = 30;
     public int health { get { return currentHealth; } }
-    public float laserBlockTime = 0.8f;
+    public float laserBlockTime = 1f;
     private float blockTimer = 0.8f;
     public GameObject laserPrefab;
     public GameObject monsterPrefab;
@@ -35,7 +35,7 @@ public class BossController : MonoBehaviour
             lookDirection.Set (move.x, move.y);
             lookDirection.Normalize ();
         }
-        Debug.Log(lookDirection);
+        // Debug.Log(lookDirection);
 
         // animator.SetFloat ("x", lookDirection.x);
         // animator.SetFloat ("y", lookDirection.y);
@@ -70,10 +70,14 @@ public class BossController : MonoBehaviour
     // }
 
     void Launch () {
-        GameObject laserObject = Instantiate (laserPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+        GameObject laserObject = Instantiate (laserPrefab, rigidBody2D.position + new Vector2(0.08f, 0.1f), Quaternion.identity);
         LaserController lc = laserObject.GetComponent<LaserController> ();
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        lc.Launch(-difference);
+        difference = -difference;
+        float angle = Mathf.Atan2(-difference.x, difference.y) * Mathf.Rad2Deg;
+        lc.Launch(angle);
+        // lc.Launch(angle + 100);
+        // lc.Launch(angle - 100);
         blockTimer = laserBlockTime;
 
         // animator.SetTrigger ("Launch");
@@ -82,5 +86,7 @@ public class BossController : MonoBehaviour
     void Invoc() {
         GameObject invoc = Instantiate (monsterPrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
     }
+
+    
 
 }

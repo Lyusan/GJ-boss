@@ -12,8 +12,10 @@ public class HeroController : MonoBehaviour
     // public float timeInvicible = 2.0f;
     public GameObject arrowPrefab;
     int currentHealth;
+    
+    float randomDirectionTimer;
     // float invincibleTimer;
-
+    Vector2 movingDirection;
     Rigidbody2D rigidBody2D;
     Animator animator;
     Vector2 lookDirection = new Vector2 (1, 0);
@@ -22,20 +24,28 @@ public class HeroController : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D> ();
         currentHealth = maxHealth;
     //     invincibleTimer = 0;
+        randomDirectionTimer = 0f;
+        movingDirection = new Vector2 (0f, 0f);
         animator = GetComponent<Animator> ();
     }
 
     void Update () {
-        float horizontal = Input.GetAxis ("Horizontal");
-        float vertical = Input.GetAxis ("Vertical");
+        // float horizontal = Input.GetAxis ("Horizontal");
+        // float vertical = Input.GetAxis ("Vertical");
+        if (randomDirectionTimer <= 0) {
+            randomDirectionTimer = Random.Range(0.2f, 1f);
+            movingDirection = new Vector2 (Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            ShootOnClosestEnemy();
+        } else {
+            randomDirectionTimer -= Time.deltaTime;
+        }
 
-        Vector2 move = new Vector2 (horizontal, vertical);
-
+        Vector2 move = movingDirection;
         if (!Mathf.Approximately (move.x, 0.0f) || !Mathf.Approximately (move.y, 0.0f)) {
             lookDirection.Set (move.x, move.y);
             lookDirection.Normalize ();
         }
-        Debug.Log(lookDirection);
+        // Debug.Log(lookDirection);
 
         animator.SetFloat ("x", lookDirection.x);
         animator.SetFloat ("y", lookDirection.y);
@@ -76,9 +86,59 @@ public class HeroController : MonoBehaviour
         GameObject arrowObject = Instantiate (arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
         ArrowController ac = arrowObject.GetComponent<ArrowController> ();
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        ac.Launch (difference, 300);
+        difference = -difference;
+        float angle = Mathf.Atan2(-difference.x, difference.y) * Mathf.Rad2Deg;
+        //ac.Launch(angle + 100, 300);
+        // ac.Launch(angle - 100, 300);
+        ac.Launch (angle, 300);
+        // Debug.Log("Arrow angle: " + angle);
 
         // animator.SetTrigger ("Launch");
     }
 
+    public void Dommage(int value) {
+        currentHealth -= value;
+        if (currentHealth <= 0)
+            Destroy(gameObject);
+    }
+
+    void ShootOnClosestEnemy()
+    {
+        float closestEnemyDistance = Mathf.Infinity;
+        FireMonsterController closestEnemy = null;
+        FireMonsterController[] allEnemies = GameObject.FindObjectsOfType<FireMonsterController>();
+        Debug.Log(allEnemies);
+        foreach (FireMonsterController currentEnemy in allEnemies)
+        {
+            float distanceToEnemy = (currentEnemy.transform.position - gameObject.transform.position).sqrMagnitude;
+            Debug.Log("Ennemy: " + currentEnemy);
+            Debug.Log("Distance: " + distanceToEnemy);
+            Debug.Log("Old: " + closestEnemyDistance);
+            if (distanceToEnemy < 5000f && distanceToEnemy < closestEnemyDistance) {
+                closestEnemyDistance = distanceToEnemy;
+                closestEnemy = currentEnemy;
+            }   
+            Debug.Log("New: " + closestEnemyDistance);
+            Debug.Log("New enemy: " + closestEnemy);
+        }
+        Vector3 difference;
+        if (closestEnemy == null) {
+            BossController[] bossControllers = GameObject.FindObjectsOfType<BossController>();
+            BossController bossController = bossControllers[0];
+            difference = bossController.transform.position - transform.position;
+        }
+        else
+        {
+            difference = closestEnemy.transform.position - transform.position;
+        }
+        GameObject arrowObject = Instantiate (arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+        ArrowController ac = arrowObject.GetComponent<ArrowController> ();
+        difference = -difference;
+        float angle = Mathf.Atan2(-difference.x, difference.y) * Mathf.Rad2Deg;
+        //ac.Launch(angle + 100, 300);
+        // ac.Launch(angle - 100, 300);
+        Debug.Log("Arrow angle: " + closestEnemy);
+        ac.Launch (angle, 300);
+        Debug.DrawLine (this.transform.position, closestEnemy.transform.position);
+    }
 }

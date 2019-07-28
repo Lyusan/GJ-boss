@@ -20,10 +20,9 @@ public class ArrowController : MonoBehaviour
         }
     }
 
-    public void Launch (Vector2 direction, float force) {
-        rigidbody2d.AddForce(direction * force);
-
-        float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
+    public void Launch (float angle, float force) {
+        Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.down;
+        rigidbody2d.AddForce(dir * force);
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
     void OnCollisionEnter2D (Collision2D other) {
@@ -32,7 +31,7 @@ public class ArrowController : MonoBehaviour
             e.Dommage(2);
         }
         //we also add a debug log to know what the projectile touch
-        Debug.Log ("Projectile Collision with " + other.gameObject);
+        // Debug.Log ("Projectile Collision with " + other.gameObject);
         Destroy (gameObject);
     }
       

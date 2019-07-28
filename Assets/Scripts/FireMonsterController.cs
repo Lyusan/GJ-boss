@@ -26,7 +26,6 @@ public class FireMonsterController : MonoBehaviour
         invincibleTimer = 0f;
         timeDead = 2f;
         animator = GetComponent<Animator> ();
-        aIPath.target = HeroController.instance.transform;
     }
 
     void Awake() {
@@ -43,7 +42,7 @@ public class FireMonsterController : MonoBehaviour
             lookDirection.Set (move.x, move.y);
             lookDirection.Normalize ();
         }
-        Debug.Log(currentHealth);
+        // Debug.Log(currentHealth);
 
         animator.SetFloat ("x", lookDirection.x);
         animator.SetFloat ("y", lookDirection.y);
@@ -96,7 +95,7 @@ public class FireMonsterController : MonoBehaviour
     public void Dommage(int value) {
         if (invincibleTimer == 0f) {
             currentHealth -= value;
-            Debug.Log(currentHealth);
+            // Debug.Log(currentHealth);
             if (currentHealth <= 0) {
                 aIPath.isStopped = true;
             }
