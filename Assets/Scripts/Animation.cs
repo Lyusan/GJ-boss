@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class Animation : MonoBehaviour
 {
-    public float timer = 2f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    float timer = 1.5f;
     void Update()
     {
         timer -= Time.deltaTime;
