@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class AnimationText : MonoBehaviour
 {
-    public float timer = 5f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    float timer = 5f;
     void Update()
     {
         timer -= Time.deltaTime;
