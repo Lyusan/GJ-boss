@@ -114,12 +114,12 @@ public class BossController : MonoBehaviour
                 Launch();
                 laserTimer = 1f;
             }
-            if (monsterTimer <= 0f && Input.GetKeyDown(KeyCode.Mouse1))
+            if (monsterTimer <= 0f && vertical < 0)
             {
                 Invoc();
-                monsterTimer = 2f;
+                monsterTimer = 5f;
             }
-            if (handFallTimer <= 0f && vertical < 0)
+            if (handFallTimer <= 0f && Input.GetKeyDown(KeyCode.Mouse1))
             {
                 HandFall();
                 handFallTimer = 1f;

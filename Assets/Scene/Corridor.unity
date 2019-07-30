@@ -189,55 +189,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: 3.3970551
+      value: 3.4852784
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: 1.4327357
+      value: 1.7257011
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: -3.5436578
+      value: 3.3866472
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
-      value: 1.4700184
+      value: 1.7615664
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -3.55204
+      value: 3.423955
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: 1.616984
+      value: 1.8003569
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: 3.4314797
+      value: -3.5615902
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: 1.5912054
+      value: 1.8555725
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
-      value: 3.4314797
+      value: -3.55204
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
-      value: 1.5912054
+      value: 1.6797487
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
-      value: -4.5246544
+      value: 3.5032105
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
-      value: 3.285305
+      value: 1.7257011
       objectReference: {fileID: 0}
     - target: {fileID: 1505682152, guid: 76687d00f4434554e99555add70dabfd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].x
@@ -413,7 +413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331199562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 2.25, z: -1.5358332}
+  m_LocalPosition: {x: 0.01, y: 2.42, z: -1.5358332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -512,20 +512,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.4212395, y: 0.19340968}
+    - - {x: 0.11535328, y: 0.04853654}
+      - {x: 0.01490291, y: 0.047271013}
       - {x: 0.026900165, y: 0.010356188}
-      - {x: -0.51830244, y: 0.16712546}
       - {x: 0.040743522, y: 0.068321705}
       - {x: -0.39906493, y: 0.05622995}
-      - {x: -0.63304543, y: 0.13683975}
-      - {x: -0.648247, y: 0.19036329}
-      - {x: -0.6639943, y: 0.23208821}
       - {x: -0.12298352, y: 0.06478655}
-      - {x: 0.45760852, y: 0.18496656}
-      - {x: 0.32404625, y: 0.18792498}
-      - {x: 0.29006764, y: 0.1636914}
-      - {x: 0.4097398, y: 0.16280508}
-      - {x: 0.5239453, y: 0.17547059}
+      - {x: -0.12862678, y: 0.038221836}
+      - {x: 0.2544242, y: -0.010962009}
+      - {x: 0.0675615, y: 0.0024089813}
       - {x: -0.14552155, y: -0.045773864}
       - {x: -0.3828391, y: 0.06586659}
       - {x: -0.381886, y: -0.12883866}
@@ -534,9 +529,7 @@ PolygonCollider2D:
       - {x: 0.105745964, y: -0.085314155}
       - {x: 0.1927816, y: -0.31169558}
       - {x: 0.3596009, y: -0.16891408}
-      - {x: 0.37045622, y: 0.06580508}
-      - {x: 0.59998035, y: 0.12639081}
-      - {x: 0.68117225, y: 0.24429154}
+      - {x: 0.37758493, y: 0.06580496}
 --- !u!50 &331199567
 Rigidbody2D:
   serializedVersion: 4
@@ -570,8 +563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c1cc4b078441d45bbf561f14228157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  maxHealth: 30
+  speed: 6
+  maxHealth: 80
   laserBlockTime: 0.8
   laserPrefab: {fileID: 2188088039108318972, guid: 3a5ab6d195a6b604fb8b1ff4b935f7d6,
     type: 3}
@@ -1452,7 +1445,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 3413396634600788769, guid: be0901427b65c2c419ad0143a679c447,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

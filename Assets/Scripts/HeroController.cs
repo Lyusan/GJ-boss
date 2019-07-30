@@ -6,13 +6,13 @@ public class HeroController : MonoBehaviour
 {
 
     public static HeroController instance { get; private set; }
-    public float speed = 5.0f;
-    public int maxHealth = 5;
+    public float speed = 3.0f;
+    public int maxHealth = 4;
     public int health { get { return currentHealth; } }
     // public float timeInvicible = 2.0f;
     public GameObject arrowPrefab;
     int currentHealth;
-
+    float arrowCount = 1f;
     public bool auto;
     float randomDirectionTimer;
     // float invincibleTimer;
@@ -24,12 +24,14 @@ public class HeroController : MonoBehaviour
     public float deathTimer;
     public bool dead;
     float popTimer;
+    int arrowForce;
     float startGameTimer;
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         invincibleTimer = 0;
+        arrowForce = 150;
         deathTimer = 0;
         popTimer = 1.5f;
         startGameTimer = 5f;
@@ -71,7 +73,21 @@ public class HeroController : MonoBehaviour
                 animator.SetBool("invicible", false);
         }
         if (deathTimer <= 0 && dead) {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            dead = false;
+            auto = true;
+            deathTimer = 0;
+            Color[] colors = new Color[7] {Color.green, Color.blue, Color.cyan, Color.black, Color.magenta, Color.yellow, Color.white};
+            GetComponent<Renderer>().material.color = colors[(int)Random.Range(0, 7)];
+            maxHealth += 1;
+            currentHealth = maxHealth;
+            animator.SetBool("death", false);
+            animator.SetBool("invicible", false);
+            if (speed < 4f)
+                speed += 0.1f;
+            arrowCount += 0.6f;
+            if (arrowForce < 300)
+                arrowForce += 20;
         }
         if (!dead)
         {
@@ -154,9 +170,9 @@ public class HeroController : MonoBehaviour
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference = -difference;
         float angle = Mathf.Atan2(-difference.x, difference.y) * Mathf.Rad2Deg;
-        //ac.Launch(angle + 100, 300);
-        // ac.Launch(angle - 100, 300);
-        ac.Launch(angle, 300);
+        //ac.Launch(angle + 100, arrowForce);
+        // ac.Launch(angle - 100, arrowForce);
+        ac.Launch(angle, arrowForce);
         // Debug.Log("Arrow angle: " + angle);
 
         // animator.SetTrigger ("Launch");
@@ -198,18 +214,43 @@ public class HeroController : MonoBehaviour
         {
             difference = closestEnemy.transform.position - transform.position;
         }
-        GameObject arrowObject = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
-        GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
-        GameObject arrowObject3 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
-        ArrowController ac = arrowObject.GetComponent<ArrowController>();
-        ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
-        ArrowController ac3 = arrowObject3.GetComponent<ArrowController>();
         difference = -difference;
         float angle = Mathf.Atan2(-difference.x, difference.y) * Mathf.Rad2Deg;
-        Debug.Log("Arrow angle: " + closestEnemy);
-        ac.Launch(angle, 300);
-        ac2.Launch(angle + 20, 300);
-        ac3.Launch(angle - 20, 300);
+        if (arrowCount > 2.9f) {
+            GameObject arrowObject1 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+            GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+            ArrowController ac1 = arrowObject1.GetComponent<ArrowController>();
+            ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
+            ac1.Launch(angle + 20, arrowForce);
+            ac2.Launch(angle - 20, arrowForce);
+        }
+        if (arrowCount > 4.9f) {
+            GameObject arrowObject1 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+            GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+            ArrowController ac1 = arrowObject1.GetComponent<ArrowController>();
+            ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
+            ac1.Launch(angle + 10, arrowForce);
+            ac2.Launch(angle - 10, arrowForce);
+        }
+        if (arrowCount > 5.9f) {
+            GameObject arrowObject1 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+            GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+            ArrowController ac1 = arrowObject1.GetComponent<ArrowController>();
+            ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
+            ac1.Launch(angle + 5, arrowForce);
+            ac2.Launch(angle - 5, arrowForce);
+        }
+        if (arrowCount > 6.9f) {
+            GameObject arrowObject1 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+            GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+            ArrowController ac1 = arrowObject1.GetComponent<ArrowController>();
+            ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
+            ac1.Launch(angle + 15, arrowForce);
+            ac2.Launch(angle - 15, arrowForce);
+        }
+        GameObject arrowObject = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
+        ArrowController ac = arrowObject.GetComponent<ArrowController>();
+        ac.Launch(angle, arrowForce);
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -228,8 +269,10 @@ public class HeroController : MonoBehaviour
     {
         if (invincibleTimer <= 0)
         {
-            currentHealth -= value;
             invincibleTimer = 0.5f;
+            if (!auto)
+                return;
+            currentHealth -= value;
             if (currentHealth <= 0) {
                 deathTimer = 2f;
                 animator.SetBool("death", true);
