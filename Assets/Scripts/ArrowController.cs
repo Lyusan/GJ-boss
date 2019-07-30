@@ -5,26 +5,27 @@ using UnityEngine;
 public class ArrowController : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
+    public static float MaxAcceptableMagnitude = 1000f;
+    private float dommage;
 
-    void Start () {
 
-    }
     void Awake () {
         rigidbody2d = GetComponent<Rigidbody2D> ();
     }
 
-    // Update is called once per frame
     void Update () {
-        if (transform.position.magnitude > 1000.0f) {
+        if (transform.position.magnitude > MaxAcceptableMagnitude) {
             Destroy(gameObject);
         }
     }
 
-    public void Launch (float angle, float force) {
+    public void Launch (float angle, float force, float dommage) {
+        this.dommage = dommage;
         Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.down;
         rigidbody2d.AddForce(dir * force);
         transform.rotation = Quaternion.AngleAxis(angle + 180, Vector3.forward);
     }
+    
     void OnCollisionEnter2D (Collision2D other) {
         FireMonsterController e = other.collider.GetComponent<FireMonsterController> ();
         if (e != null) {
@@ -34,8 +35,6 @@ public class ArrowController : MonoBehaviour
         if (b != null) {
             b.Dommage(2);
         }
-        //we also add a debug log to know what the projectile touch
-        // Debug.Log ("Projectile Collision with " + other.gameObject);
         Destroy (gameObject);
     }
       

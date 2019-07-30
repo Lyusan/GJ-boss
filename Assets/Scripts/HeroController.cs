@@ -26,6 +26,8 @@ public class HeroController : MonoBehaviour
     float popTimer;
     int arrowForce;
     float startGameTimer;
+    float arrowDommage;
+
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
@@ -34,6 +36,7 @@ public class HeroController : MonoBehaviour
         arrowForce = 150;
         deathTimer = 0;
         popTimer = 1.5f;
+        arrowDommage = 2;
         startGameTimer = 5f;
         dead = false;
         randomDirectionTimer = 0f;
@@ -172,7 +175,7 @@ public class HeroController : MonoBehaviour
         float angle = Mathf.Atan2(-difference.x, difference.y) * Mathf.Rad2Deg;
         //ac.Launch(angle + 100, arrowForce);
         // ac.Launch(angle - 100, arrowForce);
-        ac.Launch(angle, arrowForce);
+        ac.Launch(angle, arrowForce, arrowDommage);
         // Debug.Log("Arrow angle: " + angle);
 
         // animator.SetTrigger ("Launch");
@@ -221,36 +224,36 @@ public class HeroController : MonoBehaviour
             GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
             ArrowController ac1 = arrowObject1.GetComponent<ArrowController>();
             ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
-            ac1.Launch(angle + 20, arrowForce);
-            ac2.Launch(angle - 20, arrowForce);
+            ac1.Launch(angle + 20, arrowForce, arrowDommage);
+            ac2.Launch(angle - 20, arrowForce, arrowDommage);
         }
         if (arrowCount > 4.9f) {
             GameObject arrowObject1 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
             GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
             ArrowController ac1 = arrowObject1.GetComponent<ArrowController>();
             ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
-            ac1.Launch(angle + 10, arrowForce);
-            ac2.Launch(angle - 10, arrowForce);
+            ac1.Launch(angle + 10, arrowForce, arrowDommage);
+            ac2.Launch(angle - 10, arrowForce, arrowDommage);
         }
         if (arrowCount > 5.9f) {
             GameObject arrowObject1 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
             GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
             ArrowController ac1 = arrowObject1.GetComponent<ArrowController>();
             ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
-            ac1.Launch(angle + 5, arrowForce);
-            ac2.Launch(angle - 5, arrowForce);
+            ac1.Launch(angle + 5, arrowForce, arrowDommage);
+            ac2.Launch(angle - 5, arrowForce, arrowDommage);
         }
         if (arrowCount > 6.9f) {
             GameObject arrowObject1 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
             GameObject arrowObject2 = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
             ArrowController ac1 = arrowObject1.GetComponent<ArrowController>();
             ArrowController ac2 = arrowObject2.GetComponent<ArrowController>();
-            ac1.Launch(angle + 15, arrowForce);
-            ac2.Launch(angle - 15, arrowForce);
+            ac1.Launch(angle + 15, arrowForce, arrowDommage);
+            ac2.Launch(angle - 15, arrowForce, arrowDommage);
         }
         GameObject arrowObject = Instantiate(arrowPrefab, rigidBody2D.position + new Vector2(0.2f, 0.1f), Quaternion.identity);
         ArrowController ac = arrowObject.GetComponent<ArrowController>();
-        ac.Launch(angle, arrowForce);
+        ac.Launch(angle, arrowForce, arrowDommage);
     }
 
     void OnCollisionEnter2D(Collision2D col)
