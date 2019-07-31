@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class HandFallController : MonoBehaviour
 {
-    static float handFallTimer = 1.8f;
+    static float handFallTime = 1.8f;
     static float handFallDommageMaxTime = 1.1f;
     static float handFallDommageMinTime = 0.8f;
-    static float dommage = 3;
+    float handFallTimer;
+    static int dommage = 3;
+
+    private void Awake() {
+        handFallTimer = handFallTime;
+    }
+
     void Update () {
         handFallTimer -= Time.deltaTime;
         if (handFallTimer < 0) {
@@ -18,6 +24,7 @@ public class HandFallController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         onTrigger(other);
     }
+
     private void OnTriggerStay2D(Collider2D other) {
         onTrigger(other);
     }
