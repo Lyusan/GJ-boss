@@ -5,29 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class Credit : MonoBehaviour
 {
-    float timer = 0f;
+    float staticCreditDisplayTimer;
+    static float staticCreditDisplayTime = 4f;
+    static float minimalPosY = -3.6f;
     Rigidbody2D rigidBody2D;
-    // Start is called before the first frame update
+
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
+        staticCreditDisplayTimer = staticCreditDisplayTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
         BossController[] bossControllers = GameObject.FindObjectsOfType<BossController>();
-        if (bossControllers.Length == 0 && rigidBody2D.position.y > -3.6f) {
+        if (bossControllers.Length > 0)
+            return;
+        if (rigidBody2D.position.y > minimalPosY)
+        {
             Vector2 position = rigidBody2D.position;
             position = position + new Vector2(0, -1f) * 1f * Time.deltaTime;
             rigidBody2D.MovePosition(position);
-            return;
         }
-        if (rigidBody2D.position.y <= -3.6f && timer <= 0f) {
-            timer = 4f;
+        if (rigidBody2D.position.y <= minimalPosY)
+        {
+            staticCreditDisplayTimer = staticCreditDisplayTime;
         }
-        if (timer <= 1 && timer >= 0) {
+        staticCreditDisplayTimer -= Time.deltaTime;
+        if (staticCreditDisplayTimer <= 0)
+        {
             SceneManager.LoadScene("Start");
         }
     }
