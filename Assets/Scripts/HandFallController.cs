@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class HandFallController : MonoBehaviour
 {
-    private float handTime;
-    void Start () {
-
-    }
-    void Awake () {
-        handTime = 1.8f;
-    }
-
-    // Update is called once per frame
+    static float handFallTimer = 1.8f;
+    static float handFallDommageMaxTime = 1.1f;
+    static float handFallDommageMinTime = 0.8f;
+    static float dommage = 3;
     void Update () {
-        handTime -= Time.deltaTime;
-        if (handTime < 0) {
+        handFallTimer -= Time.deltaTime;
+        if (handFallTimer < 0) {
             Destroy(gameObject);
         }
     }
@@ -30,8 +25,8 @@ public class HandFallController : MonoBehaviour
     private void onTrigger(Collider2D other) {
         if (other.gameObject.tag == "Player") {
             HeroController e = other.GetComponent<HeroController> ();
-            if (handTime < 1.1f && handTime > 0.8f) {
-                e.Dommage(3);
+            if (handFallTimer < handFallDommageMaxTime && handFallTimer > handFallDommageMinTime) {
+                e.Dommage(dommage);
             }
         }
     }
