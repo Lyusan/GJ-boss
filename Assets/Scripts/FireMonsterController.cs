@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class FireMonsterController : MonoBehaviour
+public class FireMonsterController : LivingEntity
 {
 
-    public int health { get { return currentHealth; } }
     public float invocationTimer;
     static float invicibleTime = 0.5f;
     float timeDead = 2f;
     float speed = 4.0f;
     float invincibleTimer;
-    int currentHealth;
     int maxHealth = 4;
 
     Rigidbody2D rigidBody2D;

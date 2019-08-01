@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossController : MonoBehaviour
+public class BossController : LivingEntity
 {
-
     public GameObject laserPrefab;
     public GameObject monsterPrefab;
     public GameObject handFallPrefab;
-    public int health { get { return currentHealth; } }
-
     Animator animator;
     Rigidbody2D rigidBody2D;
     float startGameTimer;
@@ -21,7 +18,6 @@ public class BossController : MonoBehaviour
     float laserTimer;
     float monsterTimer;
     float handFallTimer;
-    int currentHealth;
     int maxHealth = 100;
     bool dead;
 
