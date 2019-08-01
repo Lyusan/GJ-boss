@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class LaserController : MonoBehaviour
 {
-    public float laserTime;
+    static float laserTime = 1f;
+    static float activeLaserTime = .2f;
+    float laserTimer;
+    static int dommage = 2;
     void Start () {
 
     }
     void Awake () {
-        laserTime = 1f;
+        laserTimer = laserTime;
     }
 
-    // Update is called once per frame
     void Update () {
-        laserTime -= Time.deltaTime;
-        if (laserTime < 0) {
+        laserTimer -= Time.deltaTime;
+        if (laserTimer < 0) {
             Destroy(gameObject);
         }
     }
 
     public void Launch (float angle) {
-        // Debug.Log(angle);
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
@@ -35,8 +36,8 @@ public class LaserController : MonoBehaviour
     private void onTrigger(Collider2D other) {
         if (other.gameObject.tag == "Player") {
             HeroController e = other.GetComponent<HeroController> ();
-            if (laserTime < 0.2f) {
-                e.Dommage(2);
+            if (laserTimer < activeLaserTime) {
+                e.Dommage(dommage);
             }
         }
     }
