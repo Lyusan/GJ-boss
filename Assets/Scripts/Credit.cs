@@ -34,7 +34,7 @@ public class Credit : MonoBehaviour
         staticCreditDisplayTimer -= Time.deltaTime;
         if (staticCreditDisplayTimer <= 0)
         {
-            SceneManager.LoadScene("Start");
+            SceneManager.LoadScene("StartMenuScene");
         }
     }
 }

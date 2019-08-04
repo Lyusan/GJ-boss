@@ -7,6 +7,6 @@ public class Menu : MonoBehaviour
 {
     private void Update() {
         if (Input.GetKeyDown (KeyCode.Space))
-            SceneManager.LoadScene("PreScene");
+            SceneManager.LoadScene("CorridorScene");
     }
 }
