@@ -139,6 +139,7 @@ public class HeroController : LivingEntity
 
     void Move(Vector2 move)
     {
+        move.x *= Helper.PerspectiveXRatio;
         if (move.x != 0 || move.y != 0)
             animator.SetBool("moving", true);
         else
