@@ -4,7 +4,7 @@ A small video game done to contribuate to a game jam (GDL - July Jam)
 
 https://lyusan.itch.io/only-the-end
 
-# Authors
+## Authors
 
-Léo Champion
-Mathieu Champion
+- Léo Champion
+- Mathieu Champion
